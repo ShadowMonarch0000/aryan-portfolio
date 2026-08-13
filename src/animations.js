@@ -235,6 +235,74 @@ const animateAbout = () => {
   // Normal scrolling
   window.addEventListener("scroll", animateAbout);
 
+// =========================
+// SKILLS ANIMATION
+// =========================
+
+let skillsVisible = false;
+
+const animateSkills = () => {
+
+  const skills = document.querySelector(".skills");
+
+  if (!skills) return;
+
+  const rect = skills.getBoundingClientRect();
+
+  const triggerPoint = window.innerHeight * 0.75;
+
+  if (
+    rect.top < triggerPoint &&
+    rect.bottom > 0
+  ) {
+
+    if (!skillsVisible) {
+
+      skillsVisible = true;
+
+      animate(".skills-title", {
+        y: [100, 0],
+        opacity: [0, 1],
+        duration: 1200,
+        ease: "outExpo",
+      });
+
+      animate(".skill-item", {
+        y: [50, 0],
+        opacity: [0, 1],
+        delay: stagger(100),
+        duration: 800,
+        ease: "outExpo",
+      });
+
+    }
+
+  } else {
+
+    skillsVisible = false;
+
+    animate(".skills-title", {
+      y: 100,
+      opacity: 0,
+      duration: 300,
+    });
+
+    animate(".skill-item", {
+      y: 50,
+      opacity: 0,
+      duration: 300,
+    });
+
+  }
+};
+
+window.addEventListener(
+  "scroll",
+  animateSkills
+);
+
+animateSkills();
+
 
   // =========================
   // NAVBAR ABOUT CLICK
@@ -286,6 +354,11 @@ const animateAbout = () => {
     window.removeEventListener(
       "scroll",
       animateAbout
+    );
+
+    window.removeEventListener(
+      "scroll",
+      animateSkills
     );
 
   };

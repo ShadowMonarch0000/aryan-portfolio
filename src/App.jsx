@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./App.css";
 import { heroAnimation } from "./animations";
 import About from "./components/About";
+import Skills from "./components/Skills";
 
 const splitText = (text) => {
   return text.split("").map((letter, index) => (
@@ -64,6 +65,7 @@ function App() {
 
       {/* ABOUT SECTION */}
       <About />
+      <Skills />
     </>
   );
 }
