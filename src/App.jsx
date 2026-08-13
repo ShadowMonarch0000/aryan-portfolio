@@ -1,40 +1,109 @@
 import { useEffect } from "react";
+
 import "./App.css";
 import { heroAnimation } from "./animations";
+
 import About from "./components/About";
 import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
-const splitText = (text) => {
+
+// =====================================================
+// SPLIT TEXT
+// =====================================================
+
+function splitText(text) {
   return text.split("").map((letter, index) => (
-    <span key={index} className="letter">
+    <span
+      key={index}
+      className="letter"
+    >
       {letter === " " ? "\u00A0" : letter}
     </span>
   ));
-};
+}
+
+
+// =====================================================
+// APP
+// =====================================================
 
 function App() {
+
   useEffect(() => {
-    return heroAnimation();
+
+    const cleanup = heroAnimation();
+
+    return cleanup;
+
   }, []);
+
 
   return (
     <>
-      {/* HERO SECTION */}
-      <main className="hero">
+
+      {/* =================================================
+          CUSTOM CURSOR
+      ================================================= */}
+
+      <div className="cursor-circle">
+        <div className="cursor-dot"></div>
+      </div>
+
+
+      {/* =================================================
+          HERO
+      ================================================= */}
+
+      <section
+        className="hero"
+        id="home"
+      >
+
+        {/* NAVBAR */}
+
         <nav className="navbar">
-          <div className="logo">AK</div>
+
+          <div className="logo">
+            ARYAN
+          </div>
+
 
           <div className="nav-links">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+
+            <a href="#about">
+              About
+            </a>
+
+            <a href="#skills">
+              Skills
+            </a>
+
+            <a href="#projects">
+              Projects
+            </a>
+
+            <a href="#contact">
+              Contact
+            </a>
+
           </div>
+
         </nav>
 
-        <section className="hero-content">
-          <p className="hero-small">HELLO, I'M</p>
+
+        {/* HERO CONTENT */}
+
+        <div className="hero-content">
+
+          <div className="hero-small">
+            HELLO, I'M
+          </div>
+
 
           <h1 className="hero-title">
+
             <span className="word">
               {splitText("ARYAN")}
             </span>
@@ -42,32 +111,72 @@ function App() {
             <span className="word">
               {splitText("KUMAR")}
             </span>
+
           </h1>
 
+
           <p className="hero-description">
-            Computer Science Student
-            <br />
-            Developer • Problem Solver • Creator
+            Computer Science Engineering student building
+            interactive digital experiences.
           </p>
 
-          <a href="#projects" className="hero-button">
-            EXPLORE MY WORK →
+
+          <a
+            href="#projects"
+            className="hero-button"
+          >
+            VIEW MY WORK ↗
           </a>
-        </section>
+
+        </div>
+
+
+        {/* HERO SHAPES */}
 
         <div className="hero-shape shape-one"></div>
+
         <div className="hero-shape shape-two"></div>
+
+
+        {/* SCROLL */}
 
         <div className="scroll-indicator">
           SCROLL ↓
         </div>
-      </main>
 
-      {/* ABOUT SECTION */}
+      </section>
+
+
+      {/* =================================================
+          ABOUT
+      ================================================= */}
+
       <About />
+
+
+      {/* =================================================
+          SKILLS
+      ================================================= */}
+
       <Skills />
+
+
+      {/* =================================================
+          PROJECTS
+      ================================================= */}
+
+      <Projects />
+
+
+      {/* =================================================
+          CONTACT
+      ================================================= */}
+
+      <Contact />
+
     </>
   );
 }
+
 
 export default App;

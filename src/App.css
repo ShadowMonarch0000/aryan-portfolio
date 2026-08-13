@@ -1,332 +1,1210 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background: #0a0a0a;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-/* =========================
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+
+.cursor-circle {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  pointer-events: none;
+
+  z-index: 99999;
+
+  transform: translate(-50%, -50%);
+
+  /*
+    THIS IS THE IMPORTANT PART.
+
+    White + difference means the pixels
+    underneath the circle are visually inverted.
+  */
+
+  mix-blend-mode: difference;
+
+  transition:
+    width 0.4s ease,
+    height 0.4s ease;
+
+  will-change:
+    left,
+    top,
+    width,
+    height;
+}
+
+
+/* Tiny center */
+
+.cursor-dot {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 3px;
+  height: 3px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero {
   min-height: 100vh;
+
   position: relative;
+
   overflow: hidden;
+
   padding: 30px 50px;
+
+  background: #0a0a0a;
 }
 
-/* Navbar */
+
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 .navbar {
+  position: fixed;
+
+  top: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 100px);
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
+  padding: 18px 25px;
+
+  z-index: 1000;
+
+  border:
+    1px solid transparent;
+
+  border-radius: 50px;
+
+  transition:
+    background 0.4s ease,
+    border 0.4s ease,
+    backdrop-filter 0.4s ease,
+    width 0.4s ease;
 }
+
+
+/* Navbar after scroll */
+
+.navbar-scrolled {
+
+  width:
+    calc(100% - 160px);
+
+  background:
+    rgba(20, 20, 20, 0.75);
+
+  border:
+    1px solid #333;
+
+  backdrop-filter:
+    blur(12px);
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
 
 .logo {
   font-size: 24px;
+
   font-weight: 700;
+
+  letter-spacing: -1px;
 }
+
+
+/* =====================================================
+   NAV LINKS
+===================================================== */
 
 .nav-links {
+
   display: flex;
+
   gap: 35px;
+
 }
+
 
 .nav-links a {
+
   color: white;
+
   text-decoration: none;
+
   font-size: 14px;
+
+  letter-spacing: 1px;
+
+  transition:
+    opacity 0.3s ease;
+
 }
 
-/* Hero Content */
+
+.nav-links a:hover {
+
+  opacity: 0.5;
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
 
 .hero-content {
+
   position: relative;
+
   z-index: 2;
+
   margin-top: 15vh;
+
 }
+
+
+/* =====================================================
+   HERO SMALL
+===================================================== */
 
 .hero-small {
+
   font-size: 14px;
+
   letter-spacing: 4px;
+
   margin-bottom: 20px;
+
 }
+
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
 
 .hero-title {
-  font-size: clamp(80px, 15vw, 220px);
+
+  font-size:
+    clamp(
+      80px,
+      15vw,
+      220px
+    );
+
   line-height: 0.8;
+
   margin: 0;
+
   letter-spacing: -8px;
+
   display: flex;
+
   flex-direction: column;
+
   overflow: hidden;
+
 }
+
 
 .word {
+
   display: block;
+
   overflow: hidden;
+
   white-space: nowrap;
+
 }
 
+
 .letter {
+
   display: inline-block;
+
 }
+
+
+/* Initial animation state */
 
 .hero-small,
 .hero-description,
 .hero-button,
 .letter {
+
   opacity: 0;
+
 }
+
+
+/* =====================================================
+   HERO DESCRIPTION
+===================================================== */
 
 .hero-description {
+
   margin-top: 45px;
+
+  max-width: 600px;
+
   font-size: 18px;
+
   line-height: 1.6;
+
   color: #aaaaaa;
+
 }
+
+
+/* =====================================================
+   HERO BUTTON
+===================================================== */
 
 .hero-button {
+
   display: inline-block;
+
   margin-top: 30px;
+
   padding: 15px 25px;
-  border: 1px solid #ffffff;
+
+  border:
+    1px solid white;
+
   color: white;
+
   text-decoration: none;
+
   font-size: 13px;
+
   letter-spacing: 1px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+
 }
 
-/* Animated Shapes */
+
+.hero-button:hover {
+
+  background: white;
+
+  color: #0a0a0a;
+
+}
+
+
+/* =====================================================
+   HERO SHAPES
+===================================================== */
 
 .hero-shape {
+
   position: absolute;
+
   border-radius: 50%;
+
+  pointer-events: none;
+
   z-index: 1;
+
 }
+
 
 .shape-one {
+
   width: 300px;
+
   height: 300px;
-  border: 1px solid #444;
+
+  border:
+    1px solid #444;
+
   right: 10%;
+
   top: 25%;
+
 }
+
 
 .shape-two {
+
   width: 120px;
+
   height: 120px;
-  background: #ffffff;
+
+  background: white;
+
   right: 18%;
+
   top: 45%;
+
 }
 
-/* Scroll */
+
+/* =====================================================
+   SCROLL
+===================================================== */
 
 .scroll-indicator {
+
   position: absolute;
+
   bottom: 30px;
+
   left: 50px;
+
   font-size: 11px;
+
   letter-spacing: 3px;
+
   color: #777;
+
 }
 
 
-/* =========================
+/* =====================================================
    ABOUT
-========================= */
+===================================================== */
 
 .about {
+
   min-height: 100vh;
+
   padding: 150px 50px;
+
   background: #0a0a0a;
+
   color: white;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 100px;
+
+  overflow: hidden;
+
 }
+
 
 .section-label {
+
   font-size: 12px;
+
   letter-spacing: 3px;
+
   color: #777;
+
   margin-bottom: 50px;
+
 }
+
 
 .about-title {
+
+  font-size:
+    clamp(
+      50px,
+      8vw,
+      120px
+    );
+
+  line-height: 0.9;
+
+  letter-spacing: -5px;
+
+  margin: 0;
+
   opacity: 0;
 
-  font-size: clamp(50px, 8vw, 120px);
-  line-height: 0.9;
-  letter-spacing: -5px;
-  margin: 0;
 }
+
 
 .about-content {
+
   max-width: 550px;
+
   align-self: center;
+
 }
+
 
 .about-text {
-  opacity: 0;
 
   font-size: 20px;
+
   line-height: 1.7;
+
   color: #aaa;
+
   margin-bottom: 35px;
+
+  opacity: 0;
+
 }
 
-/* =========================
+
+/* =====================================================
    SKILLS
-========================= */
+===================================================== */
 
 .skills {
+
   min-height: 100vh;
+
   padding: 150px 50px;
+
   background: #0a0a0a;
+
   color: white;
+
+  overflow: hidden;
+
 }
+
 
 .skills-header {
+
   margin-bottom: 100px;
+
 }
 
+
 .skills-title {
-  font-size: clamp(60px, 10vw, 150px);
+
+  font-size:
+    clamp(
+      60px,
+      10vw,
+      150px
+    );
+
   line-height: 0.85;
+
   letter-spacing: -6px;
+
   margin: 0;
 
   opacity: 0;
+
 }
+
 
 .skills-list {
+
   width: 100%;
-  border-top: 1px solid #333;
+
+  border-top:
+    1px solid #333;
+
 }
 
+
 .skill-item {
+
   display: grid;
-  grid-template-columns: 100px 1fr 50px;
+
+  grid-template-columns:
+    100px 1fr 50px;
+
   align-items: center;
 
   padding: 25px 0;
 
-  border-bottom: 1px solid #333;
+  border-bottom:
+    1px solid #333;
 
   cursor: pointer;
 
   opacity: 0;
-  transform: translateY(50px);
 
-  transition: padding 0.4s ease;
+  transition:
+    padding 0.4s ease;
+
 }
+
 
 .skill-item:hover {
+
   padding-left: 30px;
+
   padding-right: 30px;
+
 }
+
 
 .skill-number {
+
   font-size: 12px;
+
   color: #666;
+
   letter-spacing: 2px;
+
 }
+
 
 .skill-name {
-  font-size: clamp(30px, 5vw, 70px);
+
+  font-size:
+    clamp(
+      30px,
+      5vw,
+      70px
+    );
+
   font-weight: 500;
+
   letter-spacing: -2px;
+
 }
+
 
 .skill-arrow {
+
   font-size: 30px;
+
   text-align: right;
 
-  transition: transform 0.4s ease;
+  transition:
+    transform 0.4s ease;
+
 }
 
-.skill-item:hover .skill-arrow {
-  transform: rotate(45deg);
+
+.skill-item:hover
+.skill-arrow {
+
+  transform:
+    rotate(45deg);
+
 }
 
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.projects {
+
+  min-height: 100vh;
+
+  padding: 150px 50px;
+
+  background: #0a0a0a;
+
+  color: white;
+
+  overflow: hidden;
+
+}
+
+
+.projects-title {
+
+  font-size:
+    clamp(
+      60px,
+      10vw,
+      150px
+    );
+
+  line-height: 0.85;
+
+  letter-spacing: -6px;
+
+  margin:
+    0 0 120px 0;
+
+  opacity: 0;
+
+}
+
+
+.projects-list {
+
+  width: 100%;
+
+  border-top:
+    1px solid #333;
+
+}
+
+
+.project-item {
+
+  display: grid;
+
+  grid-template-columns:
+    100px 1fr 50px;
+
+  align-items: center;
+
+  padding: 45px 0;
+
+  border-bottom:
+    1px solid #333;
+
+  color: white;
+
+  text-decoration: none;
+
+  opacity: 0;
+
+  transition:
+    padding 0.5s ease;
+
+}
+
+
+.project-item:hover {
+
+  padding-left: 30px;
+
+  padding-right: 30px;
+
+}
+
+
+.project-number {
+
+  color: #666;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+}
+
+
+.project-main {
+
+  min-width: 0;
+
+}
+
+
+.project-name {
+
+  margin: 0;
+
+  color: white;
+
+  font-size:
+    clamp(
+      35px,
+      5vw,
+      70px
+    );
+
+  font-weight: 500;
+
+  letter-spacing: -3px;
+
+  transition:
+    transform 0.5s ease;
+
+}
+
+
+.project-item:hover
+.project-name {
+
+  transform:
+    translateX(15px);
+
+}
+
+
+.project-description {
+
+  max-width: 600px;
+
+  margin: 15px 0;
+
+  color: #999;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+}
+
+
+.project-tech {
+
+  color: #666;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+}
+
+
+.project-arrow {
+
+  color: white;
+
+  font-size: 30px;
+
+  transition:
+    transform 0.5s ease;
+
+}
+
+
+.project-item:hover
+.project-arrow {
+
+  transform:
+    rotate(45deg);
+
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact {
+
+  min-height: 100vh;
+
+  padding: 150px 50px;
+
+  background: white;
+
+  color: #0a0a0a;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 100px;
+
+  overflow: hidden;
+
+}
+
+
+.contact-content {
+
+  max-width: 700px;
+
+  align-self: center;
+
+}
+
+
+.contact-title {
+
+  margin: 0;
+
+  color: #0a0a0a;
+
+  font-size:
+    clamp(
+      70px,
+      12vw,
+      180px
+    );
+
+  line-height: 0.8;
+
+  letter-spacing: -8px;
+
+  opacity: 0;
+
+}
+
+
+.contact-text {
+
+  max-width: 500px;
+
+  margin-top: 60px;
+
+  color: #555;
+
+  font-size: 20px;
+
+  line-height: 1.6;
+
+  opacity: 0;
+
+}
+
+
+.contact-email {
+
+  display: inline-block;
+
+  margin-top: 40px;
+
+  padding-bottom: 8px;
+
+  border-bottom:
+    1px solid #0a0a0a;
+
+  color: #0a0a0a;
+
+  text-decoration: none;
+
+  font-size: 18px;
+
+  opacity: 0;
+
+}
 
 /* =========================
-   SKILLS MOBILE
+   PROJECT PREVIEW
 ========================= */
 
-@media (max-width: 700px) {
+.project-preview {
+  position: fixed;
 
-  .skills {
-    padding: 100px 25px;
-  }
+  width: 310px;
+  height: 190px;
 
-  .skills-title {
-    letter-spacing: -3px;
-  }
+  border: 1px solid #333;
+  border-radius: 18px;
 
-  .skill-item {
-    grid-template-columns: 50px 1fr 30px;
-  }
+  overflow: hidden;
 
-  .skill-item:hover {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+  background: #111;
 
-  .skill-name {
-    font-size: 30px;
+  pointer-events: none;
+
+  opacity: 0;
+
+  z-index: 50;
+
+  transform: scale(0.85);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-preview.show {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+.project-preview img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* Make sure preview doesn't appear on phones */
+
+@media (max-width:700px){
+
+  .project-preview{
+    display:none;
   }
 
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media (max-width: 700px) {
+
+  .cursor-circle {
+    display: none;
+  }
+
 
   .hero {
+
     padding: 25px;
+
   }
+
+
+  .navbar {
+
+    width:
+      calc(100% - 50px);
+
+    padding:
+      15px 18px;
+
+  }
+
+
+  .navbar-scrolled {
+
+    width:
+      calc(100% - 50px);
+
+  }
+
+
+  .logo {
+
+    font-size: 20px;
+
+  }
+
 
   .nav-links {
-    gap: 15px;
+
+    gap: 12px;
+
   }
+
+
+  .nav-links a {
+
+    font-size: 11px;
+
+  }
+
 
   .hero-title {
+
     letter-spacing: -4px;
+
   }
+
+
+  .hero-description {
+
+    font-size: 16px;
+
+    max-width: 90%;
+
+  }
+
 
   .shape-one {
+
     width: 180px;
+
     height: 180px;
+
   }
+
+
+  .shape-two {
+
+    width: 80px;
+
+    height: 80px;
+
+  }
+
 
   .scroll-indicator {
+
     left: 25px;
+
   }
+
 
   .about {
+
     grid-template-columns: 1fr;
+
     padding: 100px 25px;
+
     gap: 60px;
+
   }
+
 
   .about-title {
+
     letter-spacing: -3px;
+
   }
 
+
   .about-text {
+
     font-size: 17px;
+
+  }
+
+
+  .skills {
+
+    padding: 100px 25px;
+
+  }
+
+
+  .skills-title {
+
+    letter-spacing: -3px;
+
+  }
+
+
+  .skill-item {
+
+    grid-template-columns:
+      50px 1fr 30px;
+
+  }
+
+
+  .skill-name {
+
+    font-size: 30px;
+
+  }
+
+
+  .projects {
+
+    padding: 100px 25px;
+
+  }
+
+
+  .projects-title {
+
+    letter-spacing: -3px;
+
+    margin-bottom: 80px;
+
+  }
+
+
+  .project-item {
+
+    grid-template-columns:
+      40px 1fr 30px;
+
+    padding: 35px 0;
+
+  }
+
+
+  .project-name {
+
+    font-size: 32px;
+
+  }
+
+
+  .project-description {
+
+    font-size: 14px;
+
+  }
+
+
+  .contact {
+
+    grid-template-columns: 1fr;
+
+    padding: 100px 25px;
+
+    gap: 60px;
+
+  }
+
+
+  .contact-title {
+
+    letter-spacing: -4px;
+
+  }
+
+
+  .contact-text {
+
+    font-size: 17px;
+
+    margin-top: 40px;
+
   }
 
 }

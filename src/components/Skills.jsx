@@ -1,49 +1,54 @@
 function Skills() {
   const skills = [
-    "C++",
-    "Python",
-    "JavaScript",
-    "React",
-    "HTML / CSS",
-    "Git",
-    "SQL",
-    "Java",
+    ["01", "C++"],
+    ["02", "Java"],
+    ["03", "Python"],
+    ["04", "React"],
+    ["05", "JavaScript"],
+    ["06", "Git & GitHub"],
   ];
 
   return (
     <section className="skills" id="skills">
 
-      <div className="section-label">
-        02 — SKILLS
+      <div className="skills-header">
+
+        <div className="section-label">
+          02 — SKILLS
+        </div>
+
+        <h2 className="skills-title">
+          WHAT I
+          <br />
+          WORK WITH.
+        </h2>
+
       </div>
 
-      <div className="skills-header">
-        <h2 className="skills-title">
-          TECHNOLOGIES
-          <br />
-          I WORK WITH
-        </h2>
-      </div>
 
       <div className="skills-list">
 
-        {skills.map((skill, index) => (
+        {skills.map(([number, name]) => (
+
           <div
             className="skill-item"
-            key={skill}
+            key={number}
           >
-            <span className="skill-number">
-              0{index + 1}
-            </span>
 
-            <span className="skill-name">
-              {skill}
-            </span>
+            <div className="skill-number">
+              {number}
+            </div>
 
-            <span className="skill-arrow">
+            <div className="skill-name">
+              {name}
+            </div>
+
+            <div className="skill-arrow">
               ↗
-            </span>
+            </div>
+
           </div>
+
         ))}
 
       </div>

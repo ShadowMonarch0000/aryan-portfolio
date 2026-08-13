@@ -1,11 +1,14 @@
 function About() {
   return (
     <section className="about" id="about">
-      <div className="about-header">
-        <p className="section-label">01 — ABOUT</p>
+
+      <div>
+        <div className="section-label">
+          01 — ABOUT
+        </div>
 
         <h2 className="about-title">
-          I BUILD
+          BUILDING
           <br />
           DIGITAL
           <br />
@@ -14,18 +17,20 @@ function About() {
       </div>
 
       <div className="about-content">
+
         <p className="about-text">
-          I'm Aryan Kumar, a Computer Science student and developer
-          who enjoys building applications, solving problems, and
-          experimenting with new technologies.
+          I'm Aryan, a Computer Science Engineering
+          student interested in software development,
+          creative coding and interactive web experiences.
         </p>
 
         <p className="about-text">
-          I work with technologies such as C++, Python, JavaScript,
-          React, SQL, and various development tools to turn ideas
-          into functional projects.
+          I enjoy turning ideas into functional,
+          visually engaging digital products.
         </p>
+
       </div>
+
     </section>
   );
 }
